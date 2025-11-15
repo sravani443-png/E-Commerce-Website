@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MyStore</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+  <h1>MyStore</h1>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="cart.html">Cart</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>Welcome to MyStore</h1>
+  <p>Find the best products at great prices!</p>
+  <button id="shop-now">Shop Now</button>
+</section>
+
+<footer>
+  <p>© 2025 MyStore. All Rights Reserved.</p>
+</footer>
+
+<script>
+  // Redirect Shop Now button to shop.html
+  document.getElementById("shop-now").addEventListener("click", () => {
+    window.location.href = "shop.html";
+  });
+</script>
+
+</body>
+</html>
