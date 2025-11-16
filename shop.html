@@ -1,10 +1,63 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Shop - MyStore</title>
-    <link rel="stylesheet" href="style.css">
-</head>
+<script>
+  if(localStorage.getItem("loggedIn") !== "true"){
+    // Redirect to login if not logged in
+    window.location.href = "login.html";
+  }
+</script>
 
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop - MyStore</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <style>
+    /* Products container */
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
+    }
+
+    /* Individual product box */
+    .product {
+      background: rgb(204, 207, 209);
+      border-radius: 10px;
+      padding: 15px;
+      width: 200px;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .product img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .products {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .product {
+        width: 80%;
+      }
+    }
+  </style>
+</head>
 <body>
 
 <header>
@@ -16,60 +69,75 @@
   </nav>
 </header>
 
-<h2 style="text-align:center; margin-top:20px;">Our Products</h2>
-
 <section class="products">
-
   <div class="product">
-    <img src="images/shoe1.jpg" alt="Shoes">
+    <img src="images/shoe1.jpg" alt="Sport Shoes">
     <h3>Sport Shoes</h3>
-    <p class="price">₹999</p>
-    <button>Add to Cart</button>
-  </div>
-
-  <div class="product">
-    <img src="images/shirt1.jpg" alt="Shirt">
-    <h3>Casual Shirt</h3>
-    <p class="price">₹599</p>
-    <button>Add to Cart</button>
-  </div>
-
-  <div class="product">
-    <img src="images/shirt2.jpg" alt="Shirt">
-    <h3>Premium Shirt</h3>
-    <p class="price">₹699</p>
-    <button>Add to Cart</button>
-  </div>
-
-  <div class="product">
-    <img src="images/belt1.jpg" alt="Belt">
-    <h3>Brown Casual Belt</h3>
-    <p class="price">₹300</p>
-    <button>Add to Cart</button>
+    <p>₹999</p>
+    <button><i class="fas fa-shopping-cart"></i> Add to Cart</button>
   </div>
 
   <div class="product">
     <img src="images/watch1.jpg" alt="Watch">
-    <h3>Classic Watch</h3>
-    <p class="price">₹899</p>
-    <button>Add to Cart</button>
+    <h3>Watch</h3>
+    <p>₹899</p>
+    <button><i class="fas fa-shopping-cart"></i> Add to Cart</button>
   </div>
 
   <div class="product">
-    <img src="images/watch2.jpg" alt="Watch">
-    <h3>Digital Watch</h3>
-    <p class="price">₹999</p>
-    <button>Add to Cart</button>
+    <img src="images/watch2.jpg" alt="Smart Watch">
+    <h3>Smart Watch</h3>
+    <p>₹1000</p>
+    <button><i class="fas fa-shopping-cart"></i> Add to Cart</button>
   </div>
 
+  <div class="product">
+    <img src="images/shirt1.jpg" alt="T-Shirt">
+    <h3>T-Shirt</h3>
+    <p>₹400</p>
+    <button><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+  </div>
+
+  <div class="product">
+    <img src="images/shirt2.jpg" alt="Shirt">
+    <h3>Shirt</h3>
+    <p>₹599</p>
+    <button><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+  </div>
+
+  <div class="product">
+    <img src="images/belt1.jpg" alt="Brown Casual Belt">
+    <h3>Brown Casual Belt</h3>
+    <p>₹300</p>
+    <button><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+  </div>
 </section>
 
 <footer>
   <p>© 2025 MyStore. All Rights Reserved.</p>
 </footer>
 
-<script src="script.js"></script>
+<script>
+  // Add to Cart functionality
+  const buttons = document.querySelectorAll(".product button");
+
+  buttons.forEach(button => {
+    button.addEventListener("click", () => {
+      const product = button.parentElement;
+      const name = product.querySelector("h3").innerText;
+      const price = product.querySelector("p").innerText;
+
+      const item = { name, price };
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      cart.push(item);
+      localStorage.setItem("cart", JSON.stringify(cart));
+
+      alert(`${name} added to cart!`);
+    });
+  });
+</script>
 
 </body>
 </html>
+
 
